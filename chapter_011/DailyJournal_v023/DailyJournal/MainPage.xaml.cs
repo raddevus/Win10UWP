@@ -177,7 +177,7 @@ namespace DailyJournal
             }
             MainRichEdit.Document.SetText(TextSetOptions.ApplyRtfDocumentDefaults, "");
             currentJournalEntries.Clear();
-            if (MainCalendar.SelectedDates[0] != null)
+            if (MainCalendar.SelectedDates.Count > 0)
             {
                 YMDDate = MainCalendar.SelectedDates[0].ToString("yyyy-MM-dd");
                 LoadEntriesByDate();
