@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="DailyJournal.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DailyJournal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid.RowDefinitions >
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <CommandBar  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <AppBarButton 
+                x:Name="CreateNewEntryButton"
+                Icon="NewWindow" 
+                Label="New" 
+                ToolTipService.ToolTip="New (Ctrl+N)" Click="CreateNewEntryButton_Click">
+            </AppBarButton>
+            <AppBarButton 
+                x:Name="SaveEntryButton"
+                Icon="Save" 
+                Label="Save" 
+                ToolTipService.ToolTip="Save (Ctrl+S)" Click="SaveEntryButton_Click" >
+            </AppBarButton>
+        </CommandBar>
+        <CalendarView x:Name="MainCalendar" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" SelectedDatesChanged="MainCalendar_SelectedDatesChanged" Loaded="MainCalendar_Loaded"/>
+        <ListView Name="EntriesListView" Grid.Row="2" Grid.Column="0"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="7 0 0 0" Grid.Row="0" Grid.Column="0" Foreground="#ff0000" Text="Date"  />
+                        <TextBlock Margin="0 0 15 0" Grid.Row="0" Grid.Column="1" Foreground="#ff0000" Text="Entry Count" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="7 0 0 0"  Grid.Row="0" Grid.Column="0" Foreground="DarkBlue" Text="{Binding date}"  />
+                        <TextBlock Margin="25 0 2 0" Grid.Row="0" Grid.Column="1" Foreground="DarkBlue" Text="{Binding entryCount}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Pivot x:Name="rootPivot" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" GotFocus="rootPivot_GotFocus"  >
+            <PivotItem Header="Entry1" Loaded="PivotItem_Loaded" >
+                <RichEditBox Name="MainRichEdit" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" 
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+
+</Page>
