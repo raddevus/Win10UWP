@@ -237,10 +237,13 @@ namespace DailyJournal
 
         private void EntriesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dynamic currentAnon = e.AddedItems[0];
-            MainCalendar.SelectedDates.Clear();
-            DateTime dt = DateTime.Parse(currentAnon.date);
-            MainCalendar.SelectedDates.Add(dt);
+            if (e.AddedItems.Count > 0)
+            {
+                dynamic currentAnon = e.AddedItems[0];
+                MainCalendar.SelectedDates.Clear();
+                DateTime dt = DateTime.Parse(currentAnon.date);
+                MainCalendar.SelectedDates.Add(dt);
+            }
         }
     }
 
