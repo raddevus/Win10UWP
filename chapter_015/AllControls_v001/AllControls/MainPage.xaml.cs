@@ -38,7 +38,7 @@ namespace AllControls
             {
                 Title = "You've Toggled the Item",
                 Content = "The Item is On",
-                CloseButtonText = "Ok"
+                PrimaryButtonText = "OK"
             };
 
             ContentDialogResult result = await toggleDialog.ShowAsync();
